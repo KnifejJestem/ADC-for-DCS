@@ -7,13 +7,13 @@
 --]]
 BASE:TraceAll(true)
 
-local infantry_template = GROUP:FindByName("infantry_template")
-local tank_templatet72 = GROUP:FindByName("tank_templatet72")
-local tank_templatet90 = GROUP:FindByName("tank_templatet90")
-local capture_b_tank = GROUP:FindByName("capture_b_tank")
-local capture_b_infantry = GROUP:FindByName("capture_b_infantry")
-local capture_r_tank = GROUP:FindByName("capture_r_tank")
-local capture_r_infantry = GROUP:FindByName("capture_r_infantry")
+Infantry_template = GROUP:FindByName("infantry_template")
+Tank_templatet72 = GROUP:FindByName("tank_templatet72")
+Tank_templatet90 = GROUP:FindByName("tank_templatet90")
+Capture_b_tank = GROUP:FindByName("capture_b_tank")
+Capture_b_infantry = GROUP:FindByName("capture_b_infantry")
+Capture_r_tank = GROUP:FindByName("capture_r_tank")
+Capture_r_infantry = GROUP:FindByName("capture_r_infantry")
 
 --[[                                                     
                                                        
@@ -117,3 +117,166 @@ rene_attack_unit:SpawnFromPointVec3(ZONE:FindByName("rene_attack_spawn"):GetPoin
   -- :RouteToVec3(rene:GetPointVec3())
   -- :SetSpeed(20)
   -- :AddMission(AUFTRAG:NewGROUNDATTACK(GROUP:FindByName("Rene Infantry#001"), 20, ENUMS.Formation.Vehicle.OnRoad))
+
+
+--[[                                                        
+                                                               
+█████▄ ▄▄▄▄▄ ▄▄ ▄▄▄▄  ▄▄ ▄▄ ▄▄▄▄▄▄   ██████  ▄▄▄  ▄▄  ▄▄ ▄▄▄▄▄ 
+██▄▄██ ██▄▄  ██ ██▄█▄ ██ ██   ██      ▄▄▀▀  ██▀██ ███▄██ ██▄▄  
+██▄▄█▀ ██▄▄▄ ██ ██ ██ ▀███▀   ██     ██████ ▀███▀ ██ ▀██ ██▄▄▄ 
+                                                               
+--]]
+
+-- Beirut variables
+
+local beirut_spawn_zones = {
+  ZONE:FindByName("beirut_spawn-1"),
+  ZONE:FindByName("beirut_spawn-2"),
+  ZONE:FindByName("beirut_spawn-3"),
+  ZONE:FindByName("beirut_spawn-4"),
+  ZONE:FindByName("beirut_spawn-5"),
+  ZONE:FindByName("beirut_spawn-6"),
+  ZONE:FindByName("beirut_spawn-7"),
+  ZONE:FindByName("beirut_spawn-8"),
+  ZONE:FindByName("beirut_spawn-9"),
+  ZONE:FindByName("beirut_spawn-10"),
+  ZONE:FindByName("beirut_spawn-11"),
+  ZONE:FindByName("beirut_spawn-12"),
+  ZONE:FindByName("beirut_spawn-13"),
+  ZONE:FindByName("beirut_spawn-14"),
+  ZONE:FindByName("beirut_spawn-15")
+}
+
+Beirut = ZONE:FindByName("beirut")
+Beirutopszone = OPSZONE:New(ZONE:FindByName("beirut"), coalition.side.RED)
+Beirutopszone:Start()
+
+-- Beirut Units spawning
+
+local beirut_infantry = SPAWN:NewWithAlias("infantry_template", "Beirut Infantry")
+  :InitRandomizeZones(beirut_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(10, 15) do
+    beirut_infantry:Spawn()
+  end
+
+local beirut_tankt72 = SPAWN:NewWithAlias("tank_templatet72", "Beirut T-72")
+  :InitRandomizeZones(beirut_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+  for i = 1, math.random(3, 5) do
+    beirut_tankt72:Spawn()
+  end
+
+local beirut_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Beirut T-90")
+  :InitRandomizeZones(beirut_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+  for i = 1, math.random(3, 5) do
+    beirut_tankt90:Spawn()
+  end
+--[[                                                    
+                                                          
+██  ██  ▄▄▄ ▄▄▄▄▄▄ ▄▄▄  ▄▄ ▄▄   ██████  ▄▄▄  ▄▄  ▄▄ ▄▄▄▄▄ 
+██████ ██▀██  ██  ██▀██ ▀███▀    ▄▄▀▀  ██▀██ ███▄██ ██▄▄  
+██  ██ ██▀██  ██  ██▀██   █     ██████ ▀███▀ ██ ▀██ ██▄▄▄ 
+                                                          
+--]]
+
+-- Hatay variables
+
+local hatay_spawn_zones = {
+  ZONE:FindByName("hatay_spawn-1"),
+  ZONE:FindByName("hatay_spawn-2"),
+  ZONE:FindByName("hatay_spawn-3")
+}
+
+Hatay = ZONE:FindByName("hatay")
+Hatayopszone = OPSZONE:New(ZONE:FindByName("hatay"), coalition.side.RED)
+Hatayopszone:Start()
+
+-- Hatay Units spawning
+
+local hatay_infantry = SPAWN:NewWithAlias("infantry_template", "Hatay Infantry")
+  :InitRandomizeZones(hatay_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(5, 8) do
+    hatay_infantry:Spawn()
+  end
+
+local hatay_tankt72 = SPAWN:NewWithAlias("tank_templatet72", "Hatay T-72")
+  :InitRandomizeZones(hatay_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(2, 4) do
+    hatay_tankt72:Spawn()
+  end
+
+local hatay_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Hatay T-90")
+  :InitRandomizeZones(hatay_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(1, 3) do
+    hatay_tankt90:Spawn()
+  end
+
+--[[                                                             
+                                                                 
+█████▄  ▄▄▄   ▄▄▄▄  ▄▄▄▄ ▄▄▄▄▄ ▄▄      ██████  ▄▄▄  ▄▄  ▄▄ ▄▄▄▄▄ 
+██▄▄██ ██▀██ ███▄▄ ███▄▄ ██▄▄  ██       ▄▄▀▀  ██▀██ ███▄██ ██▄▄  
+██▄▄█▀ ██▀██ ▄▄██▀ ▄▄██▀ ██▄▄▄ ██▄▄▄   ██████ ▀███▀ ██ ▀██ ██▄▄▄ 
+                                                                 
+--]]
+
+-- Bassel variables
+
+local bassel_spawn_zones = {
+  ZONE:FindByName("bassel_spawn-1"),
+  ZONE:FindByName("bassel_spawn-2"),
+  ZONE:FindByName("bassel_spawn-3"),
+  ZONE:FindByName("bassel_spawn-4"),
+  ZONE:FindByName("bassel_spawn-5"),
+  ZONE:FindByName("bassel_spawn-6"),
+  ZONE:FindByName("bassel_spawn-7"),
+  ZONE:FindByName("bassel_spawn-8")
+}
+
+Bassel = ZONE:FindByName("bassel")
+Basselopszone = OPSZONE:New(ZONE:FindByName("bassel"), coalition.side.RED)
+Basselopszone:Start()
+
+-- Bassel Units spawning
+
+local bassel_infantry = SPAWN:NewWithAlias("infantry_template", "Bassel Infantry")
+  :InitRandomizeZones(bassel_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(8, 12) do
+    bassel_infantry:Spawn()
+  end
+
+local bassel_tankt72 = SPAWN:NewWithAlias("tank_templatet72", "Bassel T-72")
+  :InitRandomizeZones(bassel_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(3, 6) do
+    bassel_tankt72:Spawn()
+  end
+
+local bassel_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Bassel T-90")
+  :InitRandomizeZones(bassel_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(2, 4) do
+    bassel_tankt90:Spawn()
+  end
+
