@@ -13,6 +13,16 @@ BASE:TraceAll(true)
 -------------------------------------------------
 
 Infantry_template = GROUP:FindByName("infantry_template")
+Manpad_template = GROUP:FindByName("manpad_template")
+Rpg_template = GROUP:FindByName("rpg_template")
+Sa15_template = GROUP:FindByName("sa15_template")
+Sa15m2_template = GROUP:FindByName("sa15m2_template")
+Sa2_template = GROUP:FindByName("sa2_template")
+Sa5_template = GROUP:FindByName("sa5_template")
+Sa6_template = GROUP:FindByName("sa6_template")
+Sa3_template = GROUP:FindByName("sa3_template")
+Sa10_template = GROUP:FindByName("sa10_template")
+Sa11_template = GROUP:FindByName("sa11_template")
 Tank_templatet72 = GROUP:FindByName("tank_templatet72")
 Tank_templatet90 = GROUP:FindByName("tank_templatet90")
 Capture_b_tank = GROUP:FindByName("capture_b_tank")
@@ -23,7 +33,7 @@ Capture_r_infantry = GROUP:FindByName("capture_r_infantry")
 Opszones = {}
 Friendlyzones = {}
 Enemyzones = {}
-
+Samzones = {}
 -------------------------------------------------
 -- Zones.lua functions
 -------------------------------------------------
@@ -167,6 +177,33 @@ local rene_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Rene T-90")
     rene_tankt90:Spawn()
   end
 
+local rene_manpads = SPAWN:NewWithAlias("manpad_template", "Rene Manpads")
+  :InitRandomizeZones(rene_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(2, 4) do
+    rene_manpads:Spawn()
+  end
+
+local rene_sa15 = SPAWN:NewWithAlias("sa15_template", "Rene SA-15")
+  :InitRandomizeZones(rene_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(1, 2) do
+    rene_sa15:Spawn()
+  end
+
+local rene_rpg = SPAWN:NewWithAlias("rpg_template", "Rene RPGs")
+  :InitRandomizeZones(rene_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(3, 6) do
+    rene_rpg:Spawn()
+  end
+
 
 
 -- Rene OnCaptured logic
@@ -243,27 +280,6 @@ function Reneopszone:OnAfterCaptured(From, Event, To, Coalition)
       end
   end
 
--- For testing send units to attack Rene (Not needed here gonna be moved to ai.lua)
-
-
-
--- local rene_attack_unit = SPAWN:NewWithAlias("Ground-1", "Rene Attack Infantry")
---   :OnSpawnGroup(
---     function( spawned_group )
---       local attack_task = AUFTRAG:NewCAPTUREZONE(Reneopszone, coalition.side.BLUE, 100, nil, ENUMS.Formation.Vehicle.OnRoad)
---       local opsgrp = ARMYGROUP:New( spawned_group )
---       if opsgrp == nil then
---         BASE:Trace("Opsgrp is nil!")
---         return
---       end
---       opsgrp:AddMission( attack_task )
---     end
---   )
---   :InitCleanUp(300)
---   :InitValidateAndRepositionGroundUnits(true)
-
--- rene_attack_unit:SpawnFromPointVec3(ZONE:FindByName("rene_attack_spawn"):GetPointVec3())
-
 
 --[[                                                        
                                                                
@@ -324,6 +340,33 @@ local beirut_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Beirut T-90")
   :InitValidateAndRepositionGroundUnits(true)
   for i = 1, math.random(3, 5) do
     beirut_tankt90:Spawn()
+  end
+
+  local beirut_manpads = SPAWN:NewWithAlias("manpad_template", "Beirut Manpads")
+    :InitRandomizeZones(beirut_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(3, 5) do
+    beirut_manpads:Spawn()
+  end
+
+  local beirut_sa15m2 = SPAWN:NewWithAlias("sa15m2_template", "Beirut SA-15M2")
+    :InitRandomizeZones(beirut_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(1, 4) do
+    beirut_sa15m2:Spawn()
+  end
+
+  local beirut_rpg = SPAWN:NewWithAlias("rpg_template", "Beirut RPGs")
+    :InitRandomizeZones(beirut_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(4, 8) do
+    beirut_rpg:Spawn()
   end
 
   function Beirutopszone:OnAfterCaptured(From, Event, To, Coalition)
@@ -450,6 +493,32 @@ local hatay_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Hatay T-90")
     hatay_tankt90:Spawn()
   end
 
+local hatay_manpads = SPAWN:NewWithAlias("manpad_template", "Hatay Manpads")
+  :InitRandomizeZones(hatay_spawn_zones)
+  :InitCleanUp(300)
+  :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(1, 3) do
+    hatay_manpads:Spawn()
+  end
+
+  local hatay_sa15 = SPAWN:NewWithAlias("sa15_template", "Hatay SA-15")
+    :InitRandomizeZones(hatay_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(1, 2) do
+    hatay_sa15:Spawn()
+  end
+
+  local hatay_rpg = SPAWN:NewWithAlias("rpg_template", "Hatay RPGs")
+    :InitRandomizeZones(hatay_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(2, 5) do
+    hatay_rpg:Spawn()
+  end
 -- Hatay OnCaptured logic
 function Hatayopszone:OnAfterCaptured(From, Event, To, Coalition)
   if Coalition == coalition.side.BLUE then
@@ -578,6 +647,33 @@ local bassel_tankt90 = SPAWN:NewWithAlias("tank_templatet90", "Bassel T-90")
     bassel_tankt90:Spawn()
   end
 
+  local bassel_manpads = SPAWN:NewWithAlias("manpad_template", "Bassel Manpads")
+    :InitRandomizeZones(bassel_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(2, 4) do
+    bassel_manpads:Spawn()
+  end
+
+  local bassel_sa15 = SPAWN:NewWithAlias("sa15_template", "Bassel SA-15")
+    :InitRandomizeZones(bassel_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(1, 3) do
+    bassel_sa15:Spawn()
+  end
+
+  local bassel_rpg = SPAWN:NewWithAlias("rpg_template", "Bassel RPGs")
+    :InitRandomizeZones(bassel_spawn_zones)
+    :InitCleanUp(300)
+    :InitValidateAndRepositionGroundUnits(true)
+
+  for i = 1, math.random(3, 6) do
+    bassel_rpg:Spawn()
+  end
+
 -- Bassel OnCaptured logic
 function Basselopszone:OnAfterCaptured(From, Event, To, Coalition)
   if Coalition == coalition.side.BLUE then
@@ -645,3 +741,4 @@ function Basselopszone:OnAfterCaptured(From, Event, To, Coalition)
       end
 
 Opszones = { Reneopszone, Beirutopszone, Basselopszone, Hatayopszone }
+Samzones = {}
