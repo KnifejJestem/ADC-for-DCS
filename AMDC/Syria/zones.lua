@@ -278,10 +278,10 @@ local rene_level = 0
 function Reneopszone:OnAfterCaptured(From, Event, To, Coalition)
     -- Handle CTLD
     if Coalition == coalition.side.BLUE then
-        Ctld:AddCTLDZone("rene", CTLD.CargoZoneType.UNLOAD, nil, true, false)
-        Ctld:ActivateZone("rene", CTLD.CargoZoneType.UNLOAD)
+        -- Ctld:AddCTLDZone("rene", CTLD.CargoZoneType.UNLOAD, nil, true, false)
+        -- Ctld:ActivateZone("rene", CTLD.CargoZoneType.UNLOAD)
     else
-        Ctld:DeactivateZone("rene", CTLD.CargoZoneType.UNLOAD)
+        -- Ctld:DeactivateZone("rene", CTLD.CargoZoneType.UNLOAD)
         local enemyzones = GetEnemyZones(Opszones)
         local closezones = GetClosestEnemyZone(Rene, enemyzones)
         if #closezones > 0 then

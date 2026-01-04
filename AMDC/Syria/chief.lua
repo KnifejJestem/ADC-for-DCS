@@ -21,17 +21,17 @@ Chief:SetTacticalOverviewOn()
 Chief:AddBrigade(BrigadeIncirlik)
 Chief:__Start(1)
 Chief:AddStrategicZone(Hatayopszone, 50, 1)
-function Chief:OnAfterNewContact(From, Event, To, Contact)
+-- function Chief:OnAfterNewContact(From, Event, To, Contact)
 
-    -- Gather info of contact.
-    local ContactName = Chief:GetContactName(Contact)
-    local ContactType = Chief:GetContactTypeName(Contact)
-    local ContactThreat = Chief:GetContactThreatlevel(Contact)
+--     -- Gather info of contact.
+--     local ContactName = Chief:GetContactName(Contact)
+--     local ContactType = Chief:GetContactTypeName(Contact)
+--     local ContactThreat = Chief:GetContactThreatlevel(Contact)
 
-    -- Text message.
-    local text = string.format("Detected NEW contact: Name=%s, Type=%s, Threat Level=%d", ContactName, ContactType,
-        ContactThreat)
-    -- Show message in log file.
-    env.info(text)
-end
+--     -- Text message.
+--     local text = string.format("Detected NEW contact: Name=%s, Type=%s, Threat Level=%d", ContactName, ContactType,
+--         ContactThreat)
+--     -- Show message in log file.
+--     env.info(text)
+-- end
 
